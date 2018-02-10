@@ -57,8 +57,8 @@ setInterval(function () {
   oled.clearDisplay();
   oled.setCursor(1, 1);
   oled.writeString(font, 1, time, 1, true);
-  oled.setCursor(20, 1);
-  oled.writeString(font, 1, status, 1, true);
-  oled.setCursor(40, 1);
-  oled.writeString(font, 1, blockHeight, 1, true);
+  oled.setCursor(1, 20);
+  oled.writeString(font, 1, 'status: ' + status || 'error', 1, true);
+  oled.setCursor(1, 40);
+  oled.writeString(font, 1, 'blockheight: ' + blockHeight || 'error', 1, true);
 }, 1000);
