@@ -22,7 +22,7 @@ oled.update();
 console.log('display clear');
 
 var options = {
-  url: 'http://127.0.0.1:18081/json',
+  url: 'http://' + process.argv[0] + ':18081/json',
   headers: {
     'content-type': 'application/json'
   },
