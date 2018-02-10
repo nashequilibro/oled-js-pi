@@ -41,6 +41,7 @@ setInterval(function () {
 
 setInterval(function () {
   request.post(options, function (error, response, body) {
+    console.log('body:', body);
     httpError = 'none';
     if (error) httpError = error;
     try {
