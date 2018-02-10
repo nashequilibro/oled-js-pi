@@ -4,7 +4,11 @@ var moment = require('moment');
 
 var request = require('request');
 
-console.log(process.argv);
+var time =  moment().format('MMMM Do YYYY, h:mm:ss a');
+var statusCode = '';
+var status = 'loading...';
+var httpError = 'none';
+var blockHeight = 'loading...'
 
 var opts = {
   width: 128,
@@ -31,15 +35,30 @@ var options = {
   body: JSON.stringify({"jsonrpc":"2.0","id":"0","method":"getblockcount"})
 };
 
-request.post(options, function (error, response, body) {
-  console.log('error:', error); // Print the error if one occurred
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-  console.log('body:', body); // Print the HTML for the Google homepage.
-});
+setInterval(function () {
+  time = moment().format('MMMM Do YYYY, h:mm:ss a');
+}, 50);
+
+setInterval(function () {
+  request.post(options, function (error, response, body) {
+    httpError = 'none';
+    if (error) httpError = error;
+    try {
+      statusCode = response && response.statusCode);
+      status = body && body.result && body.result.status;
+      blockHeight = body && body.result && body.result.count;
+    } catch (e) {
+      console.log(e);
+    }
+  });
+}, 60000);
 
 setInterval(function () {
   oled.clearDisplay();
   oled.setCursor(1, 1);
-  oled.writeString(font, 1, moment().format('MMMM Do YYYY, h:mm:ss a'), 1, true);
-  oled.update();
+  oled.writeString(font, 1, time, 1, true);
+  oled.setCursor(20, 1);
+  oled.writeString(font, 1, status, 1, true);
+  oled.setCursor(40, 1);
+  oled.writeString(font, 1, blockHeight, 1, true);
 }, 1000);
