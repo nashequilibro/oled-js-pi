@@ -19,7 +19,7 @@ oled.update();
 
 console.log('display clear');
 
-setTimeout(function () {
+setInterval(function () {
   oled.clearDisplay();
   oled.setCursor(1, 1);
   oled.writeString(font, 1, moment().format('MMMM Do YYYY, h:mm:ss a'), 1, true);
