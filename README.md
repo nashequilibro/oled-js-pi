@@ -17,8 +17,7 @@ var opts = {
 
 ### Installing OLED display
 
-Wire up or solder the Display to your Raspberry
-[adafruit tutorial](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c)
+Wire up or solder the Display to your Raspberry and then follow the [adafruit tutorial](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c) to set it up.
 
 ### Install script
 
