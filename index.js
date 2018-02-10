@@ -1,5 +1,6 @@
 var oled = require('./oled');
 var font = require('oled-font-5x7');
+var moment = require('moment');
 
 var opts = {
   width: 128,
@@ -18,6 +19,9 @@ oled.update();
 
 console.log('display clear');
 
-oled.setCursor(1, 1);
-oled.writeString(font, 1, 'Good morning.', 1, true);
-oled.update();
+setTimeout(function () {
+  oled.clearDisplay();
+  oled.setCursor(1, 1);
+  oled.writeString(font, 1, moment().format('MMMM Do YYYY, h:mm:ss a'), 1, true);
+  oled.update();
+}, 1000);
