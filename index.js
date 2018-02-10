@@ -41,13 +41,14 @@ setInterval(function () {
 
 setInterval(function () {
   request.post(options, function (error, response, body) {
+    const data = JSON.parse(body)
     console.log('body:', body);
     httpError = 'none';
     if (error) httpError = error;
     try {
       statusCode = response.statusCode;
-      status = body.result.status;
-      blockHeight = body.result.count;
+      status = data.result.status;
+      blockHeight = data.result.count;
     } catch (e) {
       console.log(e);
     }
