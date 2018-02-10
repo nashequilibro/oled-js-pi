@@ -24,7 +24,7 @@ oled.update();
 console.log('display clear');
 
 var options = {
-  url: 'http://' + process.argv[0] + ':18081/json',
+  url: 'http://' + process.argv[2] + ':18081/json',
   headers: {
     'content-type': 'application/json'
   },
