@@ -44,7 +44,7 @@ setInterval(function () {
     httpError = 'none';
     if (error) httpError = error;
     try {
-      statusCode = response && response.statusCode);
+      statusCode = response && response.statusCode;
       status = body && body.result && body.result.status;
       blockHeight = body && body.result && body.result.count;
     } catch (e) {
