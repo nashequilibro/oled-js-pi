@@ -28,9 +28,7 @@ var options = {
   headers: {
     'content-type': 'application/json'
   },
-  "jsonrpc":"2.0",
-  "id":"0",
-  "method":"getblockcount"
+  body: JSON.stringify({"jsonrpc":"2.0","id":"0","method":"getblockcount"})
 };
 
 request.post(options, function (error, response, body) {
