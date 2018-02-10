@@ -48,7 +48,7 @@ setInterval(function () {
       statusCode = response.statusCode;
       status = data.result.status;
       blockHeight = data.result.count;
-      console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Requested blockheight from ' + process.argv[2] + ', -> ' data.result.count);
+      console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Requested blockheight from ' + process.argv[2] + ', -> ' + data.result.count);
     } catch (e) {
       console.log(e);
     }
