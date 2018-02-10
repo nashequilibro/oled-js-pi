@@ -14,8 +14,10 @@ oled.turnOnDisplay();
 console.log('display on');
 
 oled.clearDisplay();
+oled.update();
 
-console.log('dispaly clear');
+console.log('display clear');
 
 oled.setCursor(1, 1);
 oled.writeString(font, 1, 'Good morning.', 1, true);
+oled.update();
