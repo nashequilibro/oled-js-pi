@@ -42,13 +42,13 @@ setInterval(function () {
 setInterval(function () {
   request.post(options, function (error, response, body) {
     const data = JSON.parse(body)
-    console.log('body:', body);
     httpError = 'none';
     if (error) httpError = error;
     try {
       statusCode = response.statusCode;
       status = data.result.status;
       blockHeight = data.result.count;
+      console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Requested blockheight from ' + process.argv[2] + ', -> ' data.result.count);
     } catch (e) {
       console.log(e);
     }
