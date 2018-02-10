@@ -4,6 +4,8 @@ var moment = require('moment');
 
 var request = require('request');
 
+console.log(process.argv);
+
 var opts = {
   width: 128,
   height: 64,
