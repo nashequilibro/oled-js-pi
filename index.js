@@ -1,6 +1,7 @@
 var oled = require('./oled');
 var font = require('oled-font-5x7');
 var moment = require('moment');
+var nodeCleanup = require('node-cleanup');
 
 var request = require('request');
 
@@ -64,3 +65,10 @@ setInterval(function () {
   oled.setCursor(1, 45);
   oled.writeString(font, 1, 'blockheight: ' + blockHeight || 'error', 1, true);
 }, 1000);
+
+nodeCleanup(function (exitCode, signal) {
+  oled.clearDisplay();
+  oled.update();
+  oled.turnOffDisplay();
+  console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Monero display exited with exitcode: ' + exitCode);
+});
