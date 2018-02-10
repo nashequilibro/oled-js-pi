@@ -11,5 +11,11 @@ var oled = new oled(opts);
 
 oled.turnOnDisplay();
 
+console.log('display on');
+
+oled.clearDisplay();
+
+console.log('dispaly clear');
+
 oled.setCursor(1, 1);
 oled.writeString(font, 1, 'Good morning.', 1, true);
