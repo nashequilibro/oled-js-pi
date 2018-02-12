@@ -52,21 +52,18 @@ setInterval(function () {
 
 setInterval(function () {
   oled.clearDisplay();
-  oled.update();
   oled.setCursor(1, 1);
   oled.writeString(font, 1, moment().format('MMM Do YY, h:mm:ss a'), 1, true);
-  oled.setCursor(1, 21);
+  oled.setCursor(1, 25);
   oled.writeString(font, 1, process.argv[2], 1, true);
-  oled.setCursor(1, 35);
+  oled.setCursor(1, 39);
   oled.writeString(font, 1, 'status: ' + status || 'error', 1, true);
-  oled.setCursor(1, 49);
+  oled.setCursor(1, 53);
   oled.writeString(font, 1, blockHeight || 'error', 1, true);
-  oled.update();
 }, 1000);
 
 nodeCleanup(function (exitCode, signal) {
   oled.clearDisplay();
   oled.writeString(font, 1, 'Monerod mon exited with exitcode: ' + exitCode, 1, true);
-  oled.update();
   console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Monero display exited with exitcode: ' + exitCode);
   });
