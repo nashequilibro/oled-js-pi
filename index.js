@@ -5,7 +5,6 @@ var nodeCleanup = require('node-cleanup');
 
 var request = require('request');
 
-var time =  ;
 var status = 'loading...';
 var blockHeight = 'loading...'
 
