@@ -38,14 +38,17 @@ setInterval(function () {
     const data = JSON.parse(body)
     httpError = 'none';
     if (error) {
-      throw new Error(error)
-    }
-    try {
-      status = JSON.stringify(data.result.status);
-      blockHeight = JSON.stringify(data.result.count);
-      console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Requested blockheight from ' + process.argv[2] + ', -> ' + data.result.count);
-    } catch (e) {
-      console.log(e);
+      status = 'error';
+      blockHeight = 'retrying...'
+      console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Requested blockheight from ' + process.argv[2] + ', -> ' + error);
+    } else {
+      try {
+        status = JSON.stringify(data.result.status);
+        blockHeight = JSON.stringify(data.result.count);
+        console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Requested blockheight from ' + process.argv[2] + ', -> ' + data.result.count);
+      } catch (e) {
+        console.log(e);
+      }
     }
   });
 }, 60000);
