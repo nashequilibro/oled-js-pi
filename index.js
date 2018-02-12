@@ -5,7 +5,7 @@ var nodeCleanup = require('node-cleanup');
 
 var request = require('request');
 
-var time =  moment().format('MMM Do YY, h:mm:ss a');
+var time =  ;
 var status = 'loading...';
 var blockHeight = 'loading...'
 
@@ -35,10 +35,6 @@ var options = {
 };
 
 setInterval(function () {
-  time = moment().format('MMM Do YY, h:mm:ss a');
-}, 50);
-
-setInterval(function () {
   request.post(options, function (error, response, body) {
     const data = JSON.parse(body)
     httpError = 'none';
@@ -57,14 +53,16 @@ setInterval(function () {
 
 setInterval(function () {
   oled.clearDisplay();
+  oled.update();
   oled.setCursor(1, 1);
-  oled.writeString(font, 1, time, 1, true);
+  oled.writeString(font, 1, moment().format('MMM Do YY, h:mm:ss a'), 1, true);
   oled.setCursor(1, 21);
   oled.writeString(font, 1, process.argv[2], 1, true);
-  oled.setCursor(1, 45);
+  oled.setCursor(1, 35);
   oled.writeString(font, 1, 'status: ' + status || 'error', 1, true);
-  oled.setCursor(1, 59);
+  oled.setCursor(1, 49);
   oled.writeString(font, 1, blockHeight || 'error', 1, true);
+  oled.update();
 }, 1000);
 
 nodeCleanup(function (exitCode, signal) {
