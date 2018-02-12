@@ -1,6 +1,17 @@
-Forked from [oled-js-pi](https://github.com/juddflamm/oled-js-pi).
+## HowTo:
 
-### Just a script to monitor monerod on oled-display for raspberry pi
+[Article on steemit](https://steemit.com/monero/@nashequilibro/howto-monero-node-behind-tor-with-oled-display-on-a-raspberry-pi)
+
+To make it totally plug and play add 
+
+`_IP=$(hostname -I)
+ipv4=${_IP%% *}`
+
+to both startup scripts and replace your ip address with `$ipv4`.
+
+Now you can just plug it in everywhere.
+
+### Monitor your monerod on oled-display for raspberry pi
 
 Some issues cleaned up to make a new pi run with the oled-js-pi driver.
 
