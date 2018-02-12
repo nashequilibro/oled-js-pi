@@ -35,14 +35,13 @@ var options = {
 
 setInterval(function () {
   request.post(options, function (error, response, body) {
-    const data = JSON.parse(body)
-    httpError = 'none';
     if (error) {
       status = 'error';
       blockHeight = 'retrying...'
       console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Requested blockheight from ' + process.argv[2] + ', -> ' + error);
     } else {
       try {
+        const data = JSON.parse(body)
         status = JSON.stringify(data.result.status);
         blockHeight = JSON.stringify(data.result.count);
         console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Requested blockheight from ' + process.argv[2] + ', -> ' + data.result.count);
