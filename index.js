@@ -66,7 +66,6 @@ setInterval(function () {
 }, 1000);
 
 nodeCleanup(function (exitCode, signal) {
-  oled.clearDisplay();
-  oled.writeString(font, 1, 'Monerod mon exited with exitcode: ' + exitCode, 1, true);
+  oled.turnOffDisplay();
   console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Monero display exited with exitcode: ' + exitCode);
   });
