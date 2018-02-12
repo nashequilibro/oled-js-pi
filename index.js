@@ -5,10 +5,9 @@ var nodeCleanup = require('node-cleanup');
 
 var request = require('request');
 
-var time =  moment().format('MMMM Do YYYY, h:mm:ss a');
+var time =  moment().format('MMM Do YY, h:mm:ss a');
 var statusCode = '';
 var status = 'loading...';
-var httpError = 'none';
 var blockHeight = 'loading...'
 
 var opts = {
@@ -37,14 +36,16 @@ var options = {
 };
 
 setInterval(function () {
-  time = moment().format('MMMM Do YYYY, h:mm:ss a');
+  time = moment().format('MMM Do YY, h:mm:ss a');
 }, 50);
 
 setInterval(function () {
   request.post(options, function (error, response, body) {
     const data = JSON.parse(body)
     httpError = 'none';
-    if (error) httpError = error;
+    if (error) {
+      throw new Error(error)
+    }
     try {
       statusCode = response.statusCode;
       status = data.result.status;
@@ -60,15 +61,20 @@ setInterval(function () {
   oled.clearDisplay();
   oled.setCursor(1, 1);
   oled.writeString(font, 1, time, 1, true);
-  oled.setCursor(1, 25);
+  oled.setCursor(1, 15);
+  oled.writeString(font, 1, process.argv[2], 1, true);
+  oled.setCursor(1, 30);
   oled.writeString(font, 1, 'status: ' + status || 'error', 1, true);
-  oled.setCursor(1, 45);
-  oled.writeString(font, 1, 'blockheight: ' + blockHeight || 'error', 1, true);
+  oled.setCursor(1, 50);
+  oled.writeString(font, 1, blockHeight || 'error', 1, true);
 }, 1000);
 
 nodeCleanup(function (exitCode, signal) {
+  console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Monero display exited with exitcode: ' + exitCode);
   oled.clearDisplay();
   oled.update();
-  oled.turnOffDisplay();
-  console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Monero display exited with exitcode: ' + exitCode);
-});
+  oled.writeString(font, 1, 'Monerod mon exited with exitcode: ' + exitCode, 1, true);
+  setTimeout(function () {
+    oled.turnOffDisplay();
+  }, 2000);
+  });
