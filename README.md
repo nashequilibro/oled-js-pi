@@ -2,14 +2,17 @@
 
 [Article on steemit](https://steemit.com/monero/@nashequilibro/howto-monero-node-behind-tor-with-oled-display-on-a-raspberry-pi)
 
-To make it totally plug and play add 
+Update: to make it totally plug and play add 
 
-`_IP=$(hostname -I)
-ipv4=${_IP%% *}`
+`_IP=$(hostname -I)`
+`ipv4=${_IP%% *}`
 
-to both startup scripts and replace your ip address with `$ipv4`.
+to both startup and startupmon scripts and replace your ip address with `$ipv4`.
 
-Now you can just plug it in everywhere.
+Now you can just plug it into a Lan and it will boot and run.
+On the local Network you can access the demon through the ip shown on the OLED display.
+
+To make it remotely accessible on the Tor network you can follow [Monero: How to connect a wallet to a Tor onion service node](https://garlicgambit.wordpress.com/2017/01/15/monero-how-to-connect-wallet-to-tor-onion-service-node/)!
 
 ### Monitor your monerod on oled-display for raspberry pi
 
