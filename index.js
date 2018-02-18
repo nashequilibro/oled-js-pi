@@ -54,6 +54,10 @@ setInterval(function () {
   });
 }, 60000);
 
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2")  + "e-2");
+}
+
 setInterval(function () {
   oled.clearDisplay();
   oled.setCursor(1, 1);
@@ -61,7 +65,7 @@ setInterval(function () {
   oled.setCursor(1, 25);
   oled.writeString(font, 1, process.argv[2], 1, true);
   oled.setCursor(1, 39);
-  oled.writeString(font, 1, 'status: ' + status || 'error', 1, true);
+  oled.writeString(font, 1, 'status: ' + (status || 'error') + ' (' + roundToTwo(netWorkheight - blockHeight) + 'h behind)', 1, true);
   oled.setCursor(1, 53);
   oled.writeString(font, 1, blockHeight || 'error', 1, true);
   oled.writeString(font, 1, '/', 1, true);
