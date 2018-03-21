@@ -46,7 +46,7 @@ setInterval(function () {
         status = JSON.stringify(data.result.status);
         netWorkheight = JSON.stringify(data.result.height);
         blockHeight = JSON.stringify(data.result.target_height - 1);
-        console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Requested blockheight from ' + process.argv[2] + ', -> ' + data.result.count);
+        console.log(moment().format('MMMM Do YYYY, h:mm:ss a') + ': Requested Info from ' + process.argv[2]);
       } catch (e) {
         console.log(e);
       }
