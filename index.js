@@ -67,11 +67,11 @@ setInterval(function () {
   oled.setCursor(1, 24);
   oled.writeString(font, 1, 'status: ' + (status || 'error'), 1, true);
   oled.setCursor(1, 36);
-  oled.writeString(font, 1, roundToTwo((blockHeight - netWorkheight) / 30) || '... ' + 'h behind', 1, true);
+  oled.writeString(font, 1, JSON.stringify(roundToTwo((blockHeight - netWorkheight) / 30)) || '... ' + 'h behind', 1, true);
   oled.setCursor(1, 48);
-  oled.writeString(font, 1, netWorkheight || 'error', 1, true);
+  oled.writeString(font, 1, JSON.stringify(netWorkheight) || 'error', 1, true);
   oled.writeString(font, 1, '/', 1, true);
-  oled.writeString(font, 1, blockHeight || 'error', 1, true);
+  oled.writeString(font, 1, JSON.stringify(blockHeight) || 'error', 1, true);
 }, 1000);
 
 nodeCleanup(function (exitCode, signal) {
