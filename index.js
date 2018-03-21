@@ -5,9 +5,9 @@ var nodeCleanup = require('node-cleanup');
 
 var request = require('request');
 
-var status = 'loading...';
-var netWorkheight = 'loading...';
-var blockHeight = 'loading...';
+var status = '... ';
+var netWorkheight = '... ';
+var blockHeight = '... ';
 
 var opts = {
   width: 128,
@@ -67,11 +67,11 @@ setInterval(function () {
   oled.setCursor(1, 24);
   oled.writeString(font, 1, 'status: ' + (status || 'error'), 1, true);
   oled.setCursor(1, 36);
-  oled.writeString(font, 1, roundToTwo(netWorkheight - blockHeight) + 'h behind', 1, true);
+  oled.writeString(font, 1, roundToTwo((blockHeight - netWorkheight) / 30) || '... ' + 'h behind', 1, true);
   oled.setCursor(1, 48);
-  oled.writeString(font, 1, blockHeight || 'error', 1, true);
-  oled.writeString(font, 1, '/', 1, true);
   oled.writeString(font, 1, netWorkheight || 'error', 1, true);
+  oled.writeString(font, 1, '/', 1, true);
+  oled.writeString(font, 1, blockHeight || 'error', 1, true);
 }, 1000);
 
 nodeCleanup(function (exitCode, signal) {
