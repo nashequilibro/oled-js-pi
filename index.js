@@ -61,12 +61,14 @@ function roundToTwo(num) {
 setInterval(function () {
   oled.clearDisplay();
   oled.setCursor(1, 1);
-  oled.writeString(font, 1, moment().format('MMM Do YY, h:mm:ss a'), 1, true);
-  oled.setCursor(1, 25);
+  oled.writeString(font, 1, moment().format('h:mm:ss a'), 1, true);
+  oled.setCursor(1, 12);
   oled.writeString(font, 1, process.argv[2], 1, true);
-  oled.setCursor(1, 39);
-  oled.writeString(font, 1, 'status: ' + (status || 'error') + ' (' + roundToTwo(netWorkheight - blockHeight) + 'h behind)', 1, true);
-  oled.setCursor(1, 53);
+  oled.setCursor(1, 24);
+  oled.writeString(font, 1, 'status: ' + (status || 'error'), 1, true);
+  oled.setCursor(1, 36);
+  oled.writeString(font, 1, roundToTwo(netWorkheight - blockHeight) + 'h behind', 1, true);
+  oled.setCursor(1, 48);
   oled.writeString(font, 1, blockHeight || 'error', 1, true);
   oled.writeString(font, 1, '/', 1, true);
   oled.writeString(font, 1, netWorkheight || 'error', 1, true);
