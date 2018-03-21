@@ -66,8 +66,10 @@ setInterval(function () {
   oled.writeString(font, 1, process.argv[2], 1, true);
   oled.setCursor(1, 24);
   oled.writeString(font, 1, 'status: ' + (status || 'error'), 1, true);
-  oled.setCursor(1, 36);
-  oled.writeString(font, 1, JSON.stringify(roundToTwo((blockHeight - netWorkheight) / 30)) || '... ' + 'h behind', 1, true);
+  if (blockHeight && netWorkheight) {
+    oled.setCursor(1, 36);
+    oled.writeString(font, 1, JSON.stringify(roundToTwo((blockHeight - netWorkheight) / 30)) + 'h behind', 1, true);
+  }
   oled.setCursor(1, 48);
   oled.writeString(font, 1, JSON.stringify(netWorkheight) || 'error', 1, true);
   oled.writeString(font, 1, '/', 1, true);
